@@ -10,15 +10,12 @@ set(CMAKE_PREFIX_PATH "/home/Qt/5.15.2/gcc_64")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -std=c++0x")
 
 include_directories(
-    ../project-pyracer/src-gen
-    ~/build-commonapi/capicxx-core-runtime/include
-    ~/build-commonapi/capicxx-someip-runtime/include
-    ~/build-commonapi/vsomeip/interface
+    src-gen
+    ${CMAKE_INCLUDE_PATH}/CommonAPI-3.2
+    ${CMAKE_INCLUDE_PATH}
 )
 link_directories(
-    ~/build-commonapi/capicxx-core-runtime/build
-    ~/build-commonapi/capicxx-someip-runtime/build
-    ~/build-commonapi/vsomeip/build
+    ${CMAKE_LIBRARY_PATH}
 )
 
 find_package(Qt5 COMPONENTS Core Quick Gui DBus Location Positioning REQUIRED)
@@ -28,10 +25,10 @@ add_executable(Dashboard
         src/dbusmanager.cpp
         src/someipmanager.cpp
         src/dashboard.qrc
-        ../project-pyracer/src-gen/v1/commonapi/CANSomeIPStubAdapter.cpp
-        ../project-pyracer/src-gen/v1/commonapi/CANSomeIPDeployment.cpp
-        ../project-pyracer/src-gen/v1/commonapi/CANSomeIPProxy.cpp
-        ../project-pyracer/src-gen/v1/commonapi/CANSomeIPDeployment.cpp
+        src-gen/v1/commonapi/CANSomeIPStubAdapter.cpp
+        src-gen/v1/commonapi/CANSomeIPDeployment.cpp
+        src-gen/v1/commonapi/CANSomeIPProxy.cpp
+        src-gen/v1/commonapi/CANSomeIPDeployment.cpp
         )
 
 target_compile_definitions(Dashboard
