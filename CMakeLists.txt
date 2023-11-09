@@ -46,3 +46,4 @@ PRIVATE
     CommonAPI-SomeIP 
     vsomeip3
 )
+install(TARGETS Dashboard DESTINATION /usr/bin/example/vsomeip-example)
