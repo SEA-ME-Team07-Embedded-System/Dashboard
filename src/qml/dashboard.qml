@@ -13,7 +13,7 @@ Window {
     property int x_gap : 30
     id: root
     visible: true //"FullScreen"
-    //visibility: Window.FullScreen
+    visibility: Window.FullScreen
     width: 1280
     height: 400
     title: qsTr("Team07 dashboard")
@@ -154,7 +154,7 @@ Window {
             Plugin {
                 id: mapPlugin
                 name: "mapboxgl" // Mapbox plugin name
-                PluginParameter { name: "mapbox.access_token"; value: "file:/home/seame-workstation07/QT/Examples/Qt-5.15.2/quickcontrols/extras/dashboard_new/qml/mapbox/api-key.txt" }
+                PluginParameter { name: "mapbox.access_token"; value: "qrc:/qml/mapbox/api-key.txt" }
             }
 
             Map {
