@@ -13,9 +13,10 @@ Window {
     property int x_gap : 30
     id: root
     visible: true //"FullScreen"
-    visibility: Window.FullScreen
-    width: 1280
-    height: 400
+    //visibility: Window.FullScreen
+
+    width: 400
+    height: 1280
     title: qsTr("Team07 dashboard")
 
     property bool parkVisible: false
@@ -128,11 +129,10 @@ Window {
 
     Rectangle{
         id:centerScreen
-        anchors{
-            top: parent.top
-            bottom: parent.bottom
-        }
-        width: center_width //parent.width/2.5
+        rotation: -90
+        anchors.centerIn: parent
+        width: 1280 //parent.width/2.5
+        height: 400
         color: white //"#d6d6d6"
 
         Rectangle { //bar
@@ -148,8 +148,11 @@ Window {
         Rectangle { //map
             id:map_main
             visible: true
-            width: center_width
+            width: 1280
             height: 480
+            anchors{
+                right: parent.right
+            }
 
             Plugin {
                 id: mapPlugin
@@ -193,7 +196,7 @@ Window {
                         right_view.visible = true;
                         right_view.opacity = 1;
                         map_gradation.visible = true;
-                        map_gradation.opacity=1;
+                        map_gradation.opacity=1;r
                         map_gradation_2.opacity=0;
                     }
                 }
@@ -203,10 +206,10 @@ Window {
             id:map_gradation
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-            width: 480  //640 480
-            height: center_width
-            rotation:90
+            width: 480 //640 480
+            height: 1280
             visible: true
+            rotation:90
             opacity:1
             Behavior on opacity {
                 NumberAnimation {
@@ -221,9 +224,9 @@ Window {
             gradient: Gradient{
                 GradientStop{position: 0.0; color: "#4f4f4f"}
                 GradientStop{position: 0.35; color: "#664f4f4f"}
-                GradientStop{position: 0.45; color: "#334f4f4f"}
-                GradientStop{position: 0.5; color: "#224f4f4f"}
-                GradientStop{position: 0.55; color: "#334f4f4f"}
+                GradientStop{position: 0.45; color: "#224f4f4f"}
+                GradientStop{position: 0.5; color: "#114f4f4f"} //224f4f4f
+                GradientStop{position: 0.55; color: "#224f4f4f"}
                 GradientStop{position: 0.65; color: "#664f4f4f"}
                 GradientStop{position: 1.0; color: "#4f4f4f"}
             }
@@ -233,7 +236,7 @@ Window {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
             width: 480  //640 480
-            height: center_width
+            height: 1280
             rotation:90
             visible: false
             opacity:1
@@ -1094,3 +1097,4 @@ Window {
         }
     }
 }
+
