@@ -18,17 +18,18 @@ link_directories(
     ${CMAKE_LIBRARY_PATH}
 )
 
-find_package(Qt5 COMPONENTS Core Quick Gui DBus Location Positioning REQUIRED)
+find_package(Qt5 COMPONENTS Core Quick Gui Location Positioning REQUIRED)
 
 add_executable(Dashboard
         src/main.cpp
-        src/dbusmanager.cpp
         src/someipmanager.cpp
         src/dashboard.qrc
-        src-gen/v1/commonapi/CANSomeIPStubAdapter.cpp
+        src/piracersomeipmanager.cpp
+        src/methodcallsomeipmanager.cpp
         src-gen/v1/commonapi/CANSomeIPDeployment.cpp
         src-gen/v1/commonapi/CANSomeIPProxy.cpp
-        src-gen/v1/commonapi/CANSomeIPDeployment.cpp
+        src-gen/v1/commonapi/PiracerSomeIPProxy.cpp
+        src-gen/v1/commonapi/PiracerSomeIPDeployment.cpp
         )
 
 target_compile_definitions(Dashboard
@@ -39,7 +40,6 @@ PRIVATE
     Qt5::Core 
     Qt5::Quick 
     Qt5::Gui 
-    Qt5::DBus 
     Qt5::Location 
     Qt5::Positioning 
     CommonAPI 
@@ -47,3 +47,5 @@ PRIVATE
     vsomeip3
 )
 install(TARGETS Dashboard DESTINATION /usr/bin/example/vsomeip-example)
+
+

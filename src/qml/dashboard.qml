@@ -14,9 +14,8 @@ Window {
     id: root
     visible: true //"FullScreen"
     //visibility: Window.FullScreen
-
-    width: 400
-    height: 1280
+    width: 1280
+    height: 400
     title: qsTr("Team07 dashboard")
 
     property bool parkVisible: false
@@ -131,8 +130,12 @@ Window {
         id:centerScreen
         rotation: -90
         anchors.centerIn: parent
+//        anchors{
+//            top: parent.top
+//            bottom: parent.bottom
+//        }
         width: 1280 //parent.width/2.5
-        height: 400
+        height:480
         color: white //"#d6d6d6"
 
         Rectangle { //bar
@@ -150,14 +153,11 @@ Window {
             visible: true
             width: 1280
             height: 480
-            anchors{
-                right: parent.right
-            }
 
             Plugin {
                 id: mapPlugin
                 name: "mapboxgl" // Mapbox plugin name
-                PluginParameter { name: "mapbox.access_token"; value: "qrc:/qml/mapbox/api-key.txt" }
+                PluginParameter { name: "mapbox.access_token"; value: "file:/home/seame-workstation07/QT/Examples/Qt-5.15.2/quickcontrols/extras/dashboard_new/qml/mapbox/api-key.txt" }
             }
 
             Map {
@@ -184,19 +184,19 @@ Window {
                 anchors.fill: map_main
                 onClicked: {
                     if (left_view.visible) {
-                        left_view.opacity = 0;
-                        right_view.opacity = 0;
+//                        left_view.opacity = 0;
+//                        right_view.opacity = 0;
                         map_gradation.opacity=0;
                         map_gradation_2.visible = true;
                         map_gradation_2.opacity=1;
 
                     } else {
-                        left_view.visible = true;
-                        left_view.opacity = 1;
-                        right_view.visible = true;
-                        right_view.opacity = 1;
+//                        left_view.visible = true;
+//                        left_view.opacity = 1;
+//                        right_view.visible = true;
+//                        right_view.opacity = 1;
                         map_gradation.visible = true;
-                        map_gradation.opacity=1;r
+                        map_gradation.opacity=1;
                         map_gradation_2.opacity=0;
                     }
                 }
@@ -206,10 +206,10 @@ Window {
             id:map_gradation
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
-            width: 480 //640 480
+            width: 480  //640 480
             height: 1280
-            visible: true
             rotation:90
+            visible: true
             opacity:1
             Behavior on opacity {
                 NumberAnimation {
@@ -222,13 +222,15 @@ Window {
                 }
             }
             gradient: Gradient{
-                GradientStop{position: 0.0; color: "#4f4f4f"}
-                GradientStop{position: 0.35; color: "#664f4f4f"}
-                GradientStop{position: 0.45; color: "#224f4f4f"}
-                GradientStop{position: 0.5; color: "#114f4f4f"} //224f4f4f
-                GradientStop{position: 0.55; color: "#224f4f4f"}
-                GradientStop{position: 0.65; color: "#664f4f4f"}
-                GradientStop{position: 1.0; color: "#4f4f4f"}
+                GradientStop{position: 0.0; color: "#00000000"}
+                GradientStop{position: 1.0; color: "#00000000"}
+//                GradientStop{position: 0.0; color: "#4f4f4f"}
+//                GradientStop{position: 0.35; color: "#664f4f4f"}
+//                GradientStop{position: 0.45; color: "#334f4f4f"}
+//                GradientStop{position: 0.5; color: "#224f4f4f"}
+//                GradientStop{position: 0.55; color: "#334f4f4f"}
+//                GradientStop{position: 0.65; color: "#664f4f4f"}
+//                GradientStop{position: 1.0; color: "#4f4f4f"}
             }
         }
         Rectangle{
@@ -251,13 +253,15 @@ Window {
                 }
             }
             gradient: Gradient{
-                GradientStop{position: 0.0; color: side} //"#afafaf"
-                GradientStop{position: 0.15; color: "#44afafaf"}
-                GradientStop{position: 0.25; color: "#33afafaf"}
-                GradientStop{position: 0.5; color: "#11afafaf"}
-                GradientStop{position: 0.75; color: "#33afafaf"}
-                GradientStop{position: 0.85; color: "#44afafaf"}
-                GradientStop{position: 1.0; color: side}
+                GradientStop{position: 0.0; color: "#00000000"}
+                GradientStop{position: 1.0; color: "#00000000"}               //for yocto display
+//                GradientStop{position: 0.0; color: side} //"#afafaf"
+//                GradientStop{position: 0.15; color: "#44afafaf"}
+//                GradientStop{position: 0.25; color: "#33afafaf"}
+//                GradientStop{position: 0.5; color: "#11afafaf"}
+//                GradientStop{position: 0.75; color: "#33afafaf"}
+//                GradientStop{position: 0.85; color: "#44afafaf"}
+//                GradientStop{position: 1.0; color: side}
             }
         }
 
@@ -429,8 +433,8 @@ Window {
                     height: right_circle*0.5
                     color: "#222"
 
-                    DBusManager {
-                        id: dbusHandler
+                    PiracerSomeIPManager {
+                        id: piracerHandler
                     }
 
                     Column {
@@ -465,7 +469,7 @@ Window {
                             MouseArea {
                                 anchors.fill: sports
                                 onClicked: {
-                                    dbusHandler.mode_select(9);
+                                    piracerHandler.modeSelectCall(9);
                                 }
                             }
 
@@ -497,7 +501,7 @@ Window {
                             MouseArea {
                                 anchors.fill: normal
                                 onClicked: {
-                                    dbusHandler.mode_select(5);
+                                    piracerHandler.modeSelectCall(5);
                                 }
                             }
 
@@ -528,7 +532,7 @@ Window {
                             MouseArea {
                                 anchors.fill: eco
                                 onClicked: {
-                                    dbusHandler.mode_select(3);
+                                    piracerHandler.modeSelectCall(3);
                                 }
                             }
 
@@ -1097,4 +1101,3 @@ Window {
         }
     }
 }
-
